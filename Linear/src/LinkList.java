@@ -18,6 +18,7 @@ public class LinkList {
     }
 
     /**
+     * 构造方法
      * 创建LinkList对象
      */
     public LinkList() {
@@ -30,5 +31,10 @@ public class LinkList {
     /**
      * 置空线性表
      */
+    public void clear() {
+        head.next = null;
+        head.item = null;
+        N = 0;
+    }
 
 }
