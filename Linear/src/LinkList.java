@@ -225,4 +225,20 @@ public class LinkList<T> implements Iterable<T> {
         return current;
     }
 
+    public T getMid() {
+        if (N == 0) {
+            return null;
+        }
+
+        Node<T> current = head.next;
+        Node<T> fast = current;
+        Node<T> slow = current;
+
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return slow.item;
+    }
+
 }

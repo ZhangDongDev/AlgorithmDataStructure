@@ -83,4 +83,12 @@ class LinkListTest {
     void reverse() {
         list.reserve();
     }
+
+    @Test
+    void getMid() {
+
+        list.insert("55");
+        String mid = list.getMid();
+        System.out.println(mid);
+    }
 }
