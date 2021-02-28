@@ -5,7 +5,7 @@ public class LinkList<T> implements Iterable<T> {
      * 成员内部类：节点类
      * @param <E> 元素数据类型
      */
-    private class Node<E> {
+    private static class Node<E> {
         private E item;
         private Node<E> next;
         public Node(E item, Node<E> next) {
@@ -15,7 +15,7 @@ public class LinkList<T> implements Iterable<T> {
     }
 
     // 记录头结点(指向第一个真正存储数据的节点)
-    private Node<T> head;
+    private final Node<T> head;
     // 记录链表的长度 0,1,2,3,
     private int N;
 

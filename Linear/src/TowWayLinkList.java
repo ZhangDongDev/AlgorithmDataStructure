@@ -5,7 +5,7 @@ import java.util.List;
 public class TowWayLinkList<T> implements Iterable<T> {
     List<Node<T>> node = new ArrayList<>();
     // 头结点
-    private Node<T> head;
+    private  Node<T> head;
     // 尾结点
     private Node<T> last;
     // 链表长度
@@ -142,7 +142,7 @@ public class TowWayLinkList<T> implements Iterable<T> {
     }
 
     // 结点类
-    private class Node<E> {
+    private static class Node<E> {
         public Node<E> previous;
         public E item;
         public Node<E> next;
