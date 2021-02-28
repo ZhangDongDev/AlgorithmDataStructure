@@ -78,4 +78,9 @@ class LinkListTest {
             System.out.println(iterator.next());
         }
     }
+
+    @Test
+    void reverse() {
+        list.reserve();
+    }
 }
