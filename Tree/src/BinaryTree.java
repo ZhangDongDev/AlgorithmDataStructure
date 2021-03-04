@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinaryTree<Key extends Comparable<Key>, Value> {
     // 记录根结点
     private Node root;
@@ -22,8 +25,14 @@ public class BinaryTree<Key extends Comparable<Key>, Value> {
 
         System.out.println(min.value);
 
-        bt.delete(4);
-        System.out.println(bt.get(3));
+        // bt.delete(4);
+        bt.put(12, "刘");
+        bt.put(41, "四");
+        bt.put(8, "二");
+
+        System.out.println(bt.preOrderTraversal());
+        System.out.println(bt.inOrderTraversal());
+        System.out.println(bt.postOrderTraversal());
     }
 
     // 向树中插入一个新的键值对
@@ -150,23 +159,110 @@ public class BinaryTree<Key extends Comparable<Key>, Value> {
         return x;
     }
 
-    // 找到当前树的最小值
-    private Node findMin(Node x) {
-        if (x == null) {
-            return null;
-        }
-
-        while (x.left != null) {
-            x = x.left;
-        }
-
-        return x;
-    }
 
     // 获取树中元素的个数
     public int size() {
         return N;
     }
+
+    // 找出整个树中最小的键
+    public Key min() {
+        return findMin(root).key;
+    }
+
+    // 找到当前树的最小值
+    private Node findMin(Node x) {
+        if (x == null) {
+            return null;
+        }
+        while (x.left != null) {
+            x = x.left;
+        }
+        return x;
+    }
+
+    // 找出整个树中最大的键
+    public Key max() {
+        return findMax(root).key;
+    }
+
+    // 找到当前树的最小值
+    private Node findMax(Node x) {
+        if (x == null) {
+            return null;
+        }
+        while (x.right != null) {
+            x = x.right;
+        }
+        return x;
+    }
+
+    // 前序遍历，获取整个树中所有的键
+    public Queue<Key> preOrderTraversal() {
+        Queue<Key> keys = new LinkedList<>();
+        preOrderTraversal(root, keys);
+        return keys;
+    }
+
+    // 前序遍历，将指定的树 x 中的所有键放入到 keys 队列中
+    private void preOrderTraversal(Node x, Queue<Key> keys) {
+        if (x == null) {
+            return;
+        }
+
+        // 将根节点的key放入到队列中
+        keys.add(x.key);
+        // 找到当前结点的左子树，如果不为空，则递归遍历左子树
+        if (x.left != null) {
+            preOrderTraversal(x.left, keys);
+        }
+        // 找到当前结点的右子树，如果不为空，递归遍历右子树
+        if (x.right != null) {
+            preOrderTraversal(x.right, keys);
+        }
+    }
+
+    // 中序遍历
+    public Queue<Key> inOrderTraversal() {
+        Queue<Key> keys = new LinkedList<>();
+        inOrderTraversal(root, keys);
+        return keys;
+    }
+
+    private void inOrderTraversal(Node x, Queue<Key> keys) {
+        if (x == null) {
+            return;
+        }
+
+        if (x.left != null) {
+            inOrderTraversal(x.left, keys);
+        }
+        keys.add(x.key);
+        if (x.right != null) {
+            inOrderTraversal(x.right, keys);
+        }
+    }
+
+    // 后序遍历
+    public Queue<Key> postOrderTraversal() {
+        Queue<Key> keys = new LinkedList<>();
+        postOrderTraversal(root, keys);
+        return keys;
+    }
+
+    private void postOrderTraversal(Node x, Queue<Key> keys) {
+        if (x == null) {
+            return;
+        }
+        if (x.left != null) {
+            postOrderTraversal(x.left, keys);
+        }
+        if (x.right != null) {
+            postOrderTraversal(x.right, keys);
+        }
+        keys.add(x.key);
+    }
+
 
     private class Node {
         public Node left;
@@ -181,6 +277,4 @@ public class BinaryTree<Key extends Comparable<Key>, Value> {
             this.right = right;
         }
     }
-
-
 }
