@@ -33,6 +33,7 @@ public class BinaryTree<Key extends Comparable<Key>, Value> {
         System.out.println(bt.preOrderTraversal());
         System.out.println(bt.inOrderTraversal());
         System.out.println(bt.postOrderTraversal());
+        System.out.println(bt.levelTraversal());
     }
 
     // 向树中插入一个新的键值对
@@ -263,6 +264,23 @@ public class BinaryTree<Key extends Comparable<Key>, Value> {
         keys.add(x.key);
     }
 
+    public Queue<Key> levelTraversal() {
+        Queue<Key> keys = new LinkedList<>();
+        Queue<Node> nodes = new LinkedList<>();
+
+        nodes.offer(root);
+        while (!nodes.isEmpty()) {
+            Node temp = nodes.poll();
+            keys.offer(temp.key);
+            if (temp.left != null) {
+                nodes.offer(temp.left);
+            }
+            if (temp.right != null) {
+                nodes.offer(temp.right);
+            }
+        }
+        return keys;
+    }
 
     private class Node {
         public Node left;
