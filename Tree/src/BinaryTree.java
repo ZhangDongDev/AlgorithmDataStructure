@@ -34,6 +34,7 @@ public class BinaryTree<Key extends Comparable<Key>, Value> {
         System.out.println(bt.inOrderTraversal());
         System.out.println(bt.postOrderTraversal());
         System.out.println(bt.levelTraversal());
+        System.out.println(bt.maxDepth());
     }
 
     // 向树中插入一个新的键值对
@@ -282,6 +283,19 @@ public class BinaryTree<Key extends Comparable<Key>, Value> {
         return keys;
     }
 
+    // 计算树的最大深度
+    public int maxDepth() {
+        return maxDepth(root);
+    }
+
+    // 计算指定树 x 的最大深度
+    private int maxDepth(Node x) {
+        if (x == null) {
+            return 0;
+        }
+
+        return maxDepth(x.left) > maxDepth(x.right) ? maxDepth(x.left) + 1 : maxDepth(x.right) + 1;
+    }
     private class Node {
         public Node left;
         public Node right;
